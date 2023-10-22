@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../../models/User';
+import { environment } from './../../../config/environment';
 
 class AuthController {
   public async registerUser(req: Request, res: Response): Promise<void> {
@@ -12,7 +13,7 @@ class AuthController {
 
       const user = await User.create({ username, email, password: hashedPassword });
 
-      const token = jwt.sign({ userId: user.id }, 'secretkey', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.id }, environment.secretkey, { expiresIn: '1h' });
 
       res.json({ token });
     } catch (error) {
@@ -31,7 +32,7 @@ class AuthController {
         return;
       }
 
-      const token = jwt.sign({ userId: user.id }, 'secretkey', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.id }, environment.secretkey, { expiresIn: '1h' });
 
       res.json({ token });
     } catch (error) {

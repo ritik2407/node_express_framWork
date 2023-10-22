@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../../models/User';
 import { sessionController } from '../../utils/sessionController';
+import { environment } from './../../../config/environment';
 
 class WebLoginController {
   public async loginUser(req: Request, res: Response): Promise<void> {
@@ -16,7 +17,7 @@ class WebLoginController {
         return;
       }
 
-      const token = jwt.sign({ userId: user.id }, 'secretkey', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.id }, environment.secretkey, { expiresIn: '1h' });
 
       await sessionController.createSession(user.id, token);
 
