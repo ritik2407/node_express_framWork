@@ -7,7 +7,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts --exec ts-node",
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "migrate":"ts-node src/config/run.ts"
   },
   "keywords": [],
   "author": "Ritik",

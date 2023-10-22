@@ -3,6 +3,7 @@ export const environment = {
   DB_HOST: 'localhost',
   DB_USER: 'root',
   DB_PASSWORD: 'ritik',
-  DB_NAME: 'crm',
+  DB_NAME: 'test1',
   secretkey: 'secretkey'
 };
+  
